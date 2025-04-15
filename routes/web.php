@@ -3,7 +3,9 @@
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
+use App\Mail\JobPosted;
 use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 // Home page 
@@ -15,9 +17,9 @@ Route::get('/jobs','index');
 Route::get('/jobs/create','create');
 Route::get('/jobs/{job}','show');  
 Route::post('/jobs','store')->middleware('auth');
-Route::get('/jobs/{job}/edit','edit')->middleware('auth')->can('can:edit-job,job' );
-Route::patch('/jobs/{job}','update')->middleware('auth')->can('can:edit-job,job' );
-Route::delete('/jobs/{job}','destroy')->middleware('auth')->can('can:edit-job,job' );  
+Route::get('/jobs/{job}/edit','edit')->middleware('auth')->can('edit,job' );
+Route::patch('/jobs/{job}','update')->middleware('auth')->can('edit,job' );
+Route::delete('/jobs/{job}','destroy')->middleware('auth')->can('edit,job' );  
 });
 
 
